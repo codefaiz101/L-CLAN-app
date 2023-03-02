@@ -44,7 +44,7 @@ public class ListDomainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListDomainActivity.this, "Coming Soon.!"+name[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListDomainActivity.this, "Stay Tune Coming Soon.!"+name[position], Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(getApplicationContext(),name);
             }
         });
