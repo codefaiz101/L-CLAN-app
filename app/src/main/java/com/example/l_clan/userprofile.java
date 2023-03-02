@@ -35,14 +35,10 @@ public class userprofile extends AppCompatActivity {
         String usernamefromintent = intent.getStringExtra("username2");
         showusername.setText(usernamefromintent);
     }
-<<<<<<< HEAD
-    public void startlearning(View view){
-        Intent intent = new Intent(userprofile.this,ListDomainActivity.class);
-=======
+
 
     public void startlearning(View view) {
         Intent intent = new Intent(userprofile.this, first_page.class);
->>>>>>> 378c04becd83ccddab0faa2b6668349f7a89ecc0
         startActivity(intent);
     }
 

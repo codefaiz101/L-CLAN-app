@@ -44,11 +44,99 @@ public class ListDomainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListDomainActivity.this, "Stay Tune Coming Soon.!"+name[position], Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getApplicationContext(),name);
+                Toast.makeText(ListDomainActivity.this, name[0], Toast.LENGTH_SHORT);
+                  Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                  startActivity(intent);
             }
         });
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[1], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[2], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[3], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[4], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[5], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[6], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[7], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[8], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[9], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[10], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListDomainActivity.this, name[11], Toast.LENGTH_SHORT);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

@@ -21,7 +21,7 @@
         android:layout_gravity="center"
         android:src="@drawable/userprofile" />
 
-<<<<<<< HEAD
+
     <com.google.android.material.textfield.TextInputLayout
         app:boxStrokeColor="@color/black"
         android:layout_width="match_parent"
@@ -31,15 +31,14 @@
         android:layout_marginRight="20dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginBottom="20dp">
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-=======
+
         <TextView
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
->>>>>>> 378c04becd83ccddab0faa2b6668349f7a89ecc0
             android:id="@+id/showusername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
