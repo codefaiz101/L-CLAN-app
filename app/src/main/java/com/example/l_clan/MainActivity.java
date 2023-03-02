@@ -32,40 +32,43 @@ public class MainActivity extends AppCompatActivity {
         topanim = AnimationUtils.loadAnimation(this,R.anim.top_anim);
         bottomanim = AnimationUtils.loadAnimation(this,R.anim.bottom_anim);
 
-
         logo_image = findViewById(R.id.logo_image1);
         logo_name = findViewById(R.id.logo_name1);
+
+        sabbadiya();
+    }
+
+    private void sabbadiya() {
         logo_image.setAnimation(topanim);
         logo_name.setAnimation(bottomanim);
-
-        onStart();
     }
+
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         FirebaseUser currentuser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentuser!=null){
-//            Intent intent = new Intent(MainActivity.this,userprofile.class);
-//            String name = currentuser.toString();
-//            intent.putExtra("username2",name);
-//            startActivity(intent);
-            startActivity(new Intent(MainActivity.this,userprofile.class));
+        if (currentuser != null) {
+            Intent checklogin = new Intent(MainActivity.this, userprofile.class);
+            checklogin.putExtra("username2", FirebaseAuth.getInstance().getCurrentUser().toString());
+            startActivity(checklogin);
+            finish();
         }
-        else {
+        else
+        {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(MainActivity.this,Dashboard.class);
+                    Intent intent = new Intent(MainActivity.this, Dashboard.class);
 
                     Pair[] pairs = new Pair[2];
-                    pairs[0] = new Pair<View,String>(logo_image,"logo_image");
-                    pairs[1] = new Pair<View,String>(logo_name,"logo_name");
+                    pairs[0] = new Pair<View, String>(logo_image, "logo_image");
+                    pairs[1] = new Pair<View, String>(logo_name, "logo_name");
 
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this,pairs);
-                    startActivity(intent,options.toBundle());
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+                    startActivity(intent, options.toBundle());
 
                 }
-            },SPLASH_SCREEN);
+            }, SPLASH_SCREEN);
         }
     }
 }

@@ -30,4 +30,7 @@ Java is known for its simplicity, reliability, and scalability, making it an ide
 8) Cloud computing: Java is a popular choice for building cloud-based applications due to its scalability and security features.
     </string>
 
+    <string name="navigattion_open">open navigation drawer</string>
+    <string name="navigattion_close">close navigation drawer</string>
+
 </resources>

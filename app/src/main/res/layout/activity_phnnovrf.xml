@@ -22,27 +22,45 @@
             android:textColor="@color/black"
             android:textSize="30sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="40dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edittextnoverifyno"
+            android:id="@+id/verifyotp"
             android:layout_width="280dp"
 
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <Button
-        android:id="@+id/buttonverifyno"
+        android:id="@+id/sendvrfcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#28b0ff"
+        android:text="sendcode"
+        android:textColor="@color/white" />
+    <Button
+        android:id="@+id/verifyotpbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#28b0ff"
         android:text="verify"
+        android:textColor="@color/white" />
+    <Button
+        android:id="@+id/successfull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#28b0ff"
+        android:text="next"
         android:textColor="@color/white" />
 
     <ProgressBar

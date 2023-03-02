@@ -14,18 +14,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.sql.Struct;
+import android.app.Activity;
 
 public class signup_page extends AppCompatActivity {
-    Button gotologin;
-    Button go2;
-    TextInputLayout fullname2;
-    TextInputLayout username2;
-    TextInputLayout email2;
-    TextInputLayout phoneno2;
-    TextInputLayout password2;
-
+    Button gotologin,go2, vrfphn ;
+    TextInputLayout fullname2,username2,email2,password2,phoneno2;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
+
+    public static Activity myActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +31,13 @@ public class signup_page extends AppCompatActivity {
         setContentView(R.layout.activity_signup_page);
         gotologin = findViewById(R.id.gotologin2);
         go2 = findViewById(R.id.go2);
+        go2.setEnabled(false);
         fullname2 = findViewById(R.id.fullname2);
         username2 = findViewById(R.id.username2);
         email2 = findViewById(R.id.email2);
         phoneno2 = findViewById(R.id.phoneno2);
         password2 = findViewById(R.id.password2);
+//        vrfphn = findViewById(R.id.vrfphn);
         gotologin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +46,6 @@ public class signup_page extends AppCompatActivity {
             }
         });
     }
-
     private boolean validatefullname2(){
         String val = fullname2.getEditText().getText().toString();
 
@@ -112,6 +110,10 @@ public class signup_page extends AppCompatActivity {
             phoneno2.setError("enter valid phone no");
             return false;
         }
+        else if (val.length()<10){
+            phoneno2.setError("enter valid phone no");
+            return false;
+        }
         else{
             phoneno2.setError(null);
             phoneno2.setErrorEnabled(false);
@@ -145,13 +147,27 @@ public class signup_page extends AppCompatActivity {
         }
     }
 
-
+    public void verifyphone(View view){
+        //if not validated  then return
+        if (!validatefullname2() | !validateusername2() | !validatemail2() | !validatephoneno2() | !validatenamepassword2() ){
+            return;
+        }
+        //goto phone verify
+        String phoneno = phoneno2.getEditText().getText().toString();
+        Intent intent = new Intent(signup_page.this,phnnovrf.class);
+        intent.putExtra("phoneno",phoneno);
+        startActivity(intent);
+    }
+    public void doneverify(View view){
+        go2.setEnabled(true);
+        Toast.makeText(this, "You can now register", Toast.LENGTH_SHORT).show();
+    }
     public void registeruser(View view){
         //if not validated  then return
         if (!validatefullname2() | !validateusername2() | !validatemail2() | !validatephoneno2() | !validatenamepassword2() ){
             return;
         }
-
+        //initialize all
         String fullname = fullname2.getEditText().getText().toString();
         String username = username2.getEditText().getText().toString();
         String email = email2.getEditText().getText().toString();
@@ -162,13 +178,9 @@ public class signup_page extends AppCompatActivity {
         rootnode = FirebaseDatabase.getInstance();
         reference = rootnode.getReference("users");
 
+        //add to database
         UserHelperClass helperClass = new UserHelperClass(fullname,username,email,phoneno,password);
         reference.child(username).setValue(helperClass);
-
-        Intent intent = new Intent(getApplicationContext(),phnnovrf.class);
-        intent.putExtra("phoneno",phoneno);
-        startActivity(intent);
-
 
         //set feild null again
         fullname2.getEditText().setText(null);
@@ -176,12 +188,12 @@ public class signup_page extends AppCompatActivity {
         email2.getEditText().setText(null);
         phoneno2.getEditText().setText(null);
         password2.getEditText().setText(null);
-        gotologin.setText("login");
-        //show toast
-//        Toast.makeText(this, "successfully registered", Toast.LENGTH_SHORT).show();
-//        Toast.makeText(this, "now you can login", Toast.LENGTH_SHORT).show();
-
         //set "already have an account" text to login
+        gotologin.setText("login");
+
+        //show toast of success
+        Toast.makeText(this, "successfully registered", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "now you can login", Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -3,9 +3,9 @@ package com.example.l_clan;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskExecutors;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,26 +23,71 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import kotlin.reflect.KFunction;
+import android.app.Activity;
+
 public class phnnovrf extends AppCompatActivity {
-    Button buttonverifyno;
-    EditText edittextnoverifyno;
+    Button verifyotpbtn, sendvrfcode, successfull;
+    EditText verifyotp;
     ProgressBar progressbarverifyno;
     String verificationIdG;
     FirebaseAuth mAuth;
+
+//    signup_page.myActivity=this;  //bagu lagla tr wapru
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phnnovrf);
-        buttonverifyno = findViewById(R.id.buttonverifyno);
-        edittextnoverifyno = findViewById(R.id.edittextnoverifyno);
+        verifyotpbtn = findViewById(R.id.verifyotpbtn);
+        verifyotp = findViewById(R.id.verifyotp);
         progressbarverifyno = findViewById(R.id.progressbarverifyno);
+        progressbarverifyno.setVisibility(View.INVISIBLE);
+        sendvrfcode = findViewById(R.id.sendvrfcode);
+        successfull = findViewById(R.id.successfull);
+        successfull.setEnabled(false);
+        successfull.setVisibility(View.INVISIBLE);
         mAuth = FirebaseAuth.getInstance();
 
+        /*
+code for action bar
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+take input phone no
+*/
+
+
         String phoneno = getIntent().getStringExtra("phoneno");
+
+        //display phone no for reconfirmation
         Toast.makeText(this, phoneno, Toast.LENGTH_SHORT).show();
 
-        sendverificationcodetouser(phoneno);   //jab sahi ho jaye to shuru kr dena
+        //start process
+        sendvrfcode.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                sendverificationcodetouser(phoneno);
+            }
+        });
+        
+        verifyotpbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                @NonNull String code = verifyotp.getText().toString();
+                progressbarverifyno.setVisibility(View.VISIBLE);
+                verifycode(code);
+            }
+        });
+
+        successfull.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getApplicationContext(), signup_page.class);
+                startActivityForResult(myIntent, 0);
+                return;
+            }
+        });
     }
 
     private void sendverificationcodetouser(String phoneno) {
@@ -57,14 +100,18 @@ public class phnnovrf extends AppCompatActivity {
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
+
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
-//                String code = credential.getSmsCode();  //jab sahi ho jaye tab kr lena
-            String code = edittextnoverifyno.getText().toString();
+                final String code = credential.getSmsCode();
                 if (code!=null){
-                    progressbarverifyno.setVisibility(View.VISIBLE);
-                    verifycode(code);
+                    Toast.makeText(phnnovrf.this, "code not null", Toast.LENGTH_SHORT).show();
+                    successfull.setEnabled(true);
+                    successfull.setVisibility(View.VISIBLE);
+                }
+            else{
+                    Toast.makeText(phnnovrf.this, "didnt get the code from sms", Toast.LENGTH_SHORT).show();
                 }
         }
         @Override
@@ -88,14 +135,19 @@ public class phnnovrf extends AppCompatActivity {
     private void signinbycredentials(PhoneAuthCredential credential) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(phnnovrf.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(phnnovrf.this, "verification successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),userprofile.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
+                            //experiment
+                            Button myButton=(Button) signup_page.myActivity.findViewById(R.id.go2);
+                            myButton.setEnabled(true);
+//                            findViewById(R.id.go2).setEnabled(true); //not worked
+                            //tp
+//                            Intent intent = new Intent(getApplicationContext(),userprofile.class);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            startActivity(intent);
                         }
                         else {
                             Toast.makeText(phnnovrf.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
