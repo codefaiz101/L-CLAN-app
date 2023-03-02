@@ -63,8 +63,6 @@
             android:textColorHint="#000000"
             android:transitionName="username"
             app:boxStrokeColor="#000000">
-
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/username1text"
                 android:layout_width="match_parent"
@@ -116,7 +114,7 @@
         android:backgroundTint="#28b0ff"
         android:elevation="0dp"
         android:onClick="loginuser"
-        android:text="go"
+        android:text="login"
         android:textColor="@color/white"
         android:transitionName="go" />
 

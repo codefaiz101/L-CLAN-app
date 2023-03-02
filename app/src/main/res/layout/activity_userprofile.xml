@@ -32,10 +32,10 @@
         android:layout_marginBottom="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_margin="2dp"
             android:id="@+id/showusername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:background="@color/white"
             android:gravity="center"
             android:text="anda"
@@ -65,5 +65,6 @@
         android:backgroundTint="#28b0ff"
         android:onClick="logout"
         android:text="logout"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        />
 </LinearLayout>

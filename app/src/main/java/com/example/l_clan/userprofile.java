@@ -30,7 +30,7 @@ public class userprofile extends AppCompatActivity {
         showusername.setText(usernamefromintent);
     }
     public void startlearning(View view){
-        Intent intent = new Intent(userprofile.this,first_page.class);
+        Intent intent = new Intent(userprofile.this,ListDomainActivity.class);
         startActivity(intent);
     }
     public void logout(View view){
